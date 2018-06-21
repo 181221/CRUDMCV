@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CRUDMCV.Models;
 
 namespace CRUDMCV.Controllers
 {
@@ -10,21 +11,17 @@ namespace CRUDMCV.Controllers
     {
         public ActionResult Index()
         {
+            getEnumerable();
             return View();
         }
-
-        public ActionResult About()
+        IEnumerable<Person> getEnumerable()
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            using (DbMvc db = new DbMvc())
+            {
+                var test = db.People.ToList();
+                return db.People.ToList();
+            }
         }
     }
 }
