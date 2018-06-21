@@ -11,20 +11,36 @@ namespace CRUDMCV.Controllers
     {
         public ActionResult Index()
         {
-            getEnumerable();
+            
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Edit(Models.Person data)
+        public ActionResult viewAll()
+        {
+            return View(getEnumerable());
+        }
+
+        public ActionResult Test(Person data)
         {
             using (DbMvc db = new DbMvc())
             {
                 db.People.Add(data);
                 db.SaveChanges();
             }
+            return Json(data.Name, JsonRequestBehavior.AllowGet);
+        }
 
-            return Json(data, JsonRequestBehavior.DenyGet);
+        [HttpPost]
+        public ActionResult Edit(Person data)
+        {
+            var dataten = data;
+            using (DbMvc db = new DbMvc())
+            {
+                db.People.Add(data);
+                db.SaveChanges();
+            }
+
+            return Json(data.Name, JsonRequestBehavior.DenyGet);
         }
 
 
