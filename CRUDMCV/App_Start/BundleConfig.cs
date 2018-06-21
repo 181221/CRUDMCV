@@ -13,8 +13,12 @@ namespace CRUDMCV
             bundles.Add(new ScriptBundle("~/bundles/myscript").Include(
                 "~/Scripts/myscript.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryvalun").Include(
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryvalidate").Include(
+                "~/Scripts/jquery.validate.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryvalidateob").Include(
+                "~/Scripts/jquery.validate.unobtrusive.min.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.

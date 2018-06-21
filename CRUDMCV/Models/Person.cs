@@ -6,17 +6,41 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace CRUDMCV.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
+    public class ValidIncome : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            if (value.GetType() == typeof(int))
+            {
+                return (int)value > 0;
+            }
+
+            return false;
+        }
+    }
+
+
     public partial class Person
     {
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int Id { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "the {0} must be of type character")]
         public string Name { get; set; }
+
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public string Income { get; set; }
+        [Required]
+        [StringLength(50, ErrorMessage = "the {0} must be of type character")]
         public string Partner { get; set; }
     }
 }
