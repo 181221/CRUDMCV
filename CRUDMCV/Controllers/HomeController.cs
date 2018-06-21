@@ -14,6 +14,20 @@ namespace CRUDMCV.Controllers
             getEnumerable();
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Edit(Models.Person data)
+        {
+            using (DbMvc db = new DbMvc())
+            {
+                db.People.Add(data);
+                db.SaveChanges();
+            }
+
+            return Json(data, JsonRequestBehavior.DenyGet);
+        }
+
+
         IEnumerable<Person> getEnumerable()
         {
 
