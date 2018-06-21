@@ -10,14 +10,12 @@ $(function () {
                 type: 'POST',
                 url: "Home/Create",
                 data: $('#FormData').serialize(),
-                success: function (response) {
-                    console.log("success");
-                    console.log(response);
+                success: function (response_success) {
+                    console.log(response_success);
                     $('#FormData')[0].reset();
                 },
-                error: function (response) {
-                    console.log("error");
-                    console.log(response);
+                error: function (response_error) {
+                    console.log(response_error);
                 }
             });
         }

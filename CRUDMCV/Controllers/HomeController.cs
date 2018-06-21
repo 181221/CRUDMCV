@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using CRUDMCV.Models;
 
 namespace CRUDMCV.Controllers
@@ -32,7 +34,8 @@ namespace CRUDMCV.Controllers
                 }
                 catch (Exception e)
                 {
-                    return Json(new { error = "Error", message = e.Data.ToString() + " Error While posting to Db",} , JsonRequestBehavior.DenyGet);
+                    
+                    return Json(new { error = "Error", message = e.Data.ToString() + " Error While posting to Db " } , JsonRequestBehavior.DenyGet);
                 }
             }
             //return Json(data, JsonRequestBehavior.DenyGet);
