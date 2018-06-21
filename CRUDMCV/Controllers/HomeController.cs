@@ -17,39 +17,32 @@ namespace CRUDMCV.Controllers
 
         public ActionResult viewAll()
         {
-            return View(getEnumerable());
+           return View(getEnumerable());
         }
-
-        public ActionResult Test(Person data)
-        {
-            using (DbMvc db = new DbMvc())
-            {
-                db.People.Add(data);
-                db.SaveChanges();
-            }
-            return Json(data.Name, JsonRequestBehavior.AllowGet);
-        }
-
         [HttpPost]
-        public ActionResult Edit(Person data)
+        public ActionResult Create(Person data)
         {
-            var dataten = data;
             using (DbMvc db = new DbMvc())
             {
-                db.People.Add(data);
-                db.SaveChanges();
+                try
+                {
+                    db.People.Add(data);
+                    db.SaveChanges();
+                    return Json(new { success = "success", message = "Successfully added to db", }, JsonRequestBehavior.DenyGet);
+                }
+                catch (Exception e)
+                {
+                    return Json(new { error = "Error", message = e.Data.ToString() + " Error While posting to Db",} , JsonRequestBehavior.DenyGet);
+                }
             }
-
-            return Json(data.Name, JsonRequestBehavior.DenyGet);
+            //return Json(data, JsonRequestBehavior.DenyGet);
         }
-
 
         IEnumerable<Person> getEnumerable()
         {
 
             using (DbMvc db = new DbMvc())
             {
-                var test = db.People.ToList();
                 return db.People.ToList();
             }
         }

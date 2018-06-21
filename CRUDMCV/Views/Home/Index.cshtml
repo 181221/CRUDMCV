@@ -4,7 +4,7 @@
 }
 
 <hr />
-@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormData" }))
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormData" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">

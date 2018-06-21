@@ -5,14 +5,15 @@ $(function () {
         data.preventDefault();
         $.ajax({
             type: 'POST',
-            url: "Home/Test",
+            url: "Home/Create",
             data: $('#FormData').serialize(),
             success: function (response) {
                 console.log("success");
                 console.log(response);
+                $('#FormData')[0].reset();
             },
             error: function (response) {
-                console.log("error")
+                console.log("error");
                 console.log(response);
             }
         });
